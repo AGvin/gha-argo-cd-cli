@@ -1,0 +1,36 @@
+# action.yml
+
+name: "ArgoCD CLI Action"
+description: "Installs ArgoCD CLI and allows executing custom ArgoCD commands"
+author: "Viacheslav Sapigura"
+
+inputs:
+  server:
+    description: "The ArgoCD server domain"
+    required: true
+  app:
+    description: "ArgoCD application name (optional for some commands)"
+    required: false
+  token:
+    description: "Authentication token for ArgoCD"
+    required: true
+  command:
+    description: "ArgoCD command to execute"
+    required: true
+  args:
+    description: "Additional flags and arguments for the ArgoCD command"
+    required: false
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.server }}
+    - ${{ inputs.token }}
+    - ${{ inputs.app }}
+    - ${{ inputs.command }}
+    - ${{ inputs.args }}
+
+branding:
+  icon: "terminal"
+  color: "gray-dark"

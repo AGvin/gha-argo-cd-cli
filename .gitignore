@@ -200,3 +200,6 @@ jspm_packages/
 # Temporary backuped data
 .back/
 .tpl/
+
+my.variables
+my.secrets

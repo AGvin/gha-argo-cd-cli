@@ -61,7 +61,7 @@
 *.xhtml           text eol=lf diff=html
 
 # Docker
-Dockerfile        text
+Dockerfile        text eol=lf
 
 # Documentation
 *.ipynb           text

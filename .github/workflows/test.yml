@@ -1,0 +1,22 @@
+# .github/workflows/test.yml
+name: Manual Use ArgoCD CLI Action
+
+# Додаємо подію для ручного запуску
+on: 
+  workflow_dispatch:
+
+jobs:
+  use-argocd-action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check ArgoCD application status
+        uses: AGvin/gha-argo-cd-cli@v1
+        with:
+          server: ${{ secrets.GHA_ARGO_CD_CLI_SERVER }}
+          token: ${{ secrets.GHA_ARGO_CD_CLI_TOKEN }}
+          app: ${{ vars.GHA_ARGO_CD_CLI_APP }}
+          command: 'app get'
