@@ -7,18 +7,20 @@ ARGOCD_TOKEN=$2
 APP_NAME=$3
 COMMAND=$4
 ARGS=$5
+GRPC_WEB=$6
 
 # Log in to ArgoCD using the token
 # argocd login $ARGOCD_SERVER --grpc-web --auth-token $ARGOCD_TOKEN --insecure
 
-# Construct the full command to run
-if [ -n "$APP_NAME" ]; then
-    # If the app_name is provided, include it in the command
-    FULL_COMMAND="argocd $COMMAND $APP_NAME $ARGS --server ${ARGOCD_SERVER} --auth-token ${ARGOCD_TOKEN}"
+# setup GRPC_WEB_FLAG
+if [ "$GRPC_WEB" == "true" ]; then
+  GRPC_WEB_FLAG="--grpc-web"
 else
-    # If the app_name is not provided, run the command without it
-    FULL_COMMAND="argocd $COMMAND $ARGS --server ${ARGOCD_SERVER} --auth-token ${ARGOCD_TOKEN}"
+  GRPC_WEB_FLAG=""
 fi
+
+# Construct the full command to run
+FULL_COMMAND="argocd $COMMAND $APP_NAME $ARGS --server ${ARGOCD_SERVER} ${GRPC_WEB_FLAG} --auth-token ${ARGOCD_TOKEN}"
 
 # Execute the constructed command
 echo "Executing: $FULL_COMMAND"

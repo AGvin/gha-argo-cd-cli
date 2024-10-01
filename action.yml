@@ -20,6 +20,9 @@ inputs:
   args:
     description: "Additional flags and arguments for the ArgoCD command"
     required: false
+  grpc_web:
+    description: "Use gRPC-Web protocol to communicate with ArgoCD server (true/false)"
+    required: false
 
 runs:
   using: "docker"
@@ -30,6 +33,7 @@ runs:
     - ${{ inputs.app }}
     - ${{ inputs.command }}
     - ${{ inputs.args }}
+    - ${{ inputs.grpc_web }}
 
 branding:
   icon: "terminal"

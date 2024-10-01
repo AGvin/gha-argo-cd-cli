@@ -9,11 +9,12 @@
 
 ```yaml
 - name: Check ArgoCD application status
-  uses: AGvin/gha-argo-cd-cli@v1
+  uses: AGvin/gha-argo-cd-cli@v1.1
   with:
     server: ${{ secrets.GHA_ARGO_CD_CLI_SERVER }}
     token: ${{ secrets.GHA_ARGO_CD_CLI_TOKEN }}
     app: ${{ vars.GHA_ARGO_CD_CLI_APP }}
+    grpc_web: true
     command: "app get"
 ```
 
@@ -21,11 +22,12 @@
 
 ```yaml
 - name: Execute sync for ArgoCD application
-  uses: AGvin/gha-argo-cd-cli@v1
+  uses: AGvin/gha-argo-cd-cli@v1.1
   with:
     server: ${{ secrets.GHA_ARGO_CD_CLI_SERVER }}
     token: ${{ secrets.GHA_ARGO_CD_CLI_TOKEN }}
     app: ${{ vars.GHA_ARGO_CD_CLI_APP }}
+    grpc_web: true
     command: "app sync"
     args: "--prune"
 ```
@@ -34,11 +36,12 @@
 
 ```yaml
 - name: Change Helm image parameter
-  uses: AGvin/gha-argo-cd-cli@v1
+  uses: AGvin/gha-argo-cd-cli@v1.1
   with:
     server: ${{ secrets.GHA_ARGO_CD_CLI_SERVER }}
     token: ${{ secrets.GHA_ARGO_CD_CLI_TOKEN }}
     app: ${{ vars.GHA_ARGO_CD_CLI_APP }}
+    grpc_web: true
     command: "app set"
     args: "--parameter spec.image=lmmendes/http-hello-world:1.0"
 ```
