@@ -69,7 +69,14 @@ where:
 act workflow_dispatch --var-file my.variables --secret-file my.secrets -W '.github/workflows/test-local.yml'
 ```
 
+```sh
+act push --var-file gha.variables --secret-file gha.secrets -W '.github/workflows/show-vars.yml' --action-offline-mode
+```
+
 #### Options
+
+Pass inputs:
+`--input target=prod --input version=v1.0.0`
 
 Runners (Runner images):
 `--platform ubuntu-latest` or `-P ubuntu-latest` - [docs](https://nektosact.com/usage/runners.html)
